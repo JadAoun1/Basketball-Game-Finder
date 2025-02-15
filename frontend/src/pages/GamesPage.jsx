@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
 
 export default function GamesPage() {
   const [games, setGames] = useState([]);
@@ -13,14 +12,12 @@ export default function GamesPage() {
   }, []);
 
   return (
-    <div className="text-center mt-10">
-      <h1 className="text-3xl font-bold">Find a Pickup Game Near You</h1>
-      <ul className="mt-5">
+    <div>
+      <h1>All Pickup Games</h1>
+      <ul>
         {games.map(game => (
-          <li key={game.id} className="bg-gray-200 p-3 my-2 rounded">
-            <Link to={`/game/${game.id}`} className="text-blue-500 hover:underline">
-              {game.name}
-            </Link>
+          <li key={game._id}>
+            {game.title} - {game.location} ({game.date})
           </li>
         ))}
       </ul>
