@@ -1,11 +1,19 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 
-const UserSchema = new mongoose.Schema({
-  username: { type: String, required: true, unique: true },
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-}, { timestamps: true });
+const UserSchema = new mongoose.Schema(
+  {
+    username: { type: String, required: true, unique: true },
+    email:    { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+    profileImage: {
+      type: String,
+      default: "https://www.gravatar.com/avatar/?d=mp&f=y" // Stock default profile icon
+    },
+    bio: { type: String, default: "" },
+  },
+  { timestamps: true }
+);
 
 // Hash password before saving
 UserSchema.pre("save", async function (next) {
